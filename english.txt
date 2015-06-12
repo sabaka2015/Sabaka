@@ -1,0 +1,8 @@
+Game Field
+Parameters
+Speed
+Fuel
+Distance to target
+Mass
+Map location
+You are here:
