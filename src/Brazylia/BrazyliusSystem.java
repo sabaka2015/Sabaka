@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
-
+//zmiana próbna
 
 public class BrazyliusSystem extends JFrame  {
 	/**
