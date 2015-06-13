@@ -105,10 +105,13 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT){rocket.ax=3; ifFuelUsed=true; direction=0;fuel--;} 
-		if (e.getKeyCode() == KeyEvent.VK_LEFT){rocket.ax=-3; ifFuelUsed=true;direction=1;fuel--;} 
-		if (e.getKeyCode() == KeyEvent.VK_UP) {rocket.ay=-3; ifFuelUsed=true;direction=2;fuel--;} 
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {rocket.ay=3; ifFuelUsed=true;direction=3;fuel--;} 
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT){rocket.ax=3; ifFuelUsed=true; direction=0;} 
+		if (e.getKeyCode() == KeyEvent.VK_LEFT){rocket.ax=-3; ifFuelUsed=true;direction=1;} 
+		if (e.getKeyCode() == KeyEvent.VK_UP) {rocket.ay=-3; ifFuelUsed=true;direction=2;} 
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {rocket.ay=3; ifFuelUsed=true;direction=3;}
+		if (fuel>=0)
+		{fuel--;}
+		rocket.mass--;
 		 
 		
 	}
@@ -155,7 +158,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		g2.setColor(colors[8]);
 		printRocket(g2, rocket);
 		
-		if(calculate.GameOver==true||fuel==0)
+		if(calculate.GameOver==true||fuel<=0)
 		{
 		
 			g2.setFont(new Font(null, Font.PLAIN, 18));
@@ -194,6 +197,34 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	public int getFuel()
 	{
 		return fuel;
+	}
+
+	public void setMass(int m)
+	{
+		rocket.mass = m;
+	}
+
+	public int getDistance()
+	{
+		return (int)(calculate.distance);
+	}
+	public void setDistance(int d)
+	{
+		calculate.distance = d;
+	}
+
+	public int getMass()
+	{
+		return (int)(rocket.mass);
+	}
+	
+	public void setSpeed(int s)
+	{
+		calculate.speed = s;
+	}
+	public int getSpeed()
+	{
+		return (int)(calculate.speed);
 	}
 	
 	public void setPlanLocHelper(int f)

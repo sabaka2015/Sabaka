@@ -5,6 +5,8 @@ import java.util.List;
 
 public class CalcModel {
 	boolean GameOver=false;
+	double distance=0;
+	double speed=0;
 	public void iterate(Planet p,double dt){
 
 	        p.ax=(-p.x)/Math.pow(p.radius, 3);
@@ -50,7 +52,8 @@ public class CalcModel {
 		else {
 			p.ifFuelUsed=false;
 		}
-		double distance=Math.sqrt(Math.pow(rocket.x, 2)+Math.pow(rocket.y, 2));
+		speed=Math.sqrt(Math.pow(rocket.vx, 2)+Math.pow(rocket.vy, 2));
+	    distance=Math.sqrt(Math.pow(rocket.x, 2)+Math.pow(rocket.y, 2));
 		rocket.ax+=(-rocket.x)/Math.pow(distance, 3);
 		rocket.ay+=(-rocket.y)/Math.pow(distance, 3);
 		for (int ii=0; ii<8; ii++){

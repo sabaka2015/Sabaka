@@ -2,7 +2,7 @@ Pole gry
 Parametry
 prędkość
 Paliwo
-Odległość do celu
+Odległość do gwiazdy
 Masa
 Mapa
 Jesteś tutaj:

@@ -49,29 +49,31 @@ public class BrazyliusSystem extends JFrame  {
 		private static final long serialVersionUID = 1L;
 		float rocketFuel=1000;
 		public Parameters(PrintingPlanets a) {
-			JTextField Fuel=new JTextField();
-			Guzik guzik=new Guzik(Fuel, a);
-
-			
 			
 			setBorder(BorderFactory.createTitledBorder(null, gettingLine.getLine(), TitledBorder.LEFT, TitledBorder.TOP, new Font("times new roman",Font.PLAIN,12), Color.WHITE));
 			
 			JLabel speed=new JLabel(gettingLine.getLine());
 			JTextField Speed=new JTextField("15 km/s");
+			TextThread SpeedThread=new TextThread(Speed, a, 1);
+			
 			Speed.setBackground(Color.white);
 			Speed.setSize(100, 20);
 			
 			JLabel fuel=new JLabel(gettingLine.getLine());
+			JTextField Fuel=new JTextField();
+			TextThread FuelThread=new TextThread(Fuel, a, 2);
 			
 			JLabel distanceFromTheTarget=new JLabel(gettingLine.getLine());
 			JTextField DistanceFromTheTarget=new JTextField("2.35 J.A.");
 			DistanceFromTheTarget.setBackground(Color.white);
 			DistanceFromTheTarget.setSize(100, 20);
+			TextThread DistanceThread=new TextThread(DistanceFromTheTarget, a, 3);
 			
 			JLabel mass=new JLabel(gettingLine.getLine());
 			JTextField Mass=new JTextField("1000t");
 			Mass.setBackground(Color.white);
 			Mass.setSize(100, 20);
+			TextThread MassThread=new TextThread(Mass, a, 4);
 			
 			this.setLayout(new GridLayout(8, 1));
 			this.add(speed);
@@ -84,33 +86,68 @@ public class BrazyliusSystem extends JFrame  {
 			this.add(Mass);
 			
 			setBackground(Color.gray);
-			guzik.start();
+			FuelThread.start();
+			MassThread.start();
+			DistanceThread.start();
+			SpeedThread.start();
 		}
 
 	}
-	class Guzik extends Thread{
-		JTextField guzik;
+	class TextThread extends Thread{
+		JTextField text;
 		String napis;
 		PrintingPlanets prpl;
-		
+		int checkField=0;
 		int rocketFuel=0;
-		public Guzik(JTextField g, PrintingPlanets pp){
-			guzik=g;
+		int rocketMass=0;
+		int rocketDistance=0;
+		int rocketSpeed=0;
+		
+
+		public TextThread(JTextField g, PrintingPlanets pp,int i){
+			text=g;
 			prpl = pp;
-			
+			checkField=i;
 		}
 		public void run(){
 			while(prpl.getFuel()!=0){
-				rocketFuel = prpl.getFuel();
-				prpl.setFuel(rocketFuel);
-				napis=Integer.toString((int)rocketFuel);
-				guzik.setText(napis);
+				
+				if(checkField==1)
+				{
+					rocketSpeed = prpl.getSpeed();
+					//prpl.setFuel(rocketSpeed);
+					napis=Integer.toString((int)rocketSpeed);
+					text.setText(napis+"m/s");
+				}
+				if(checkField==2)
+				{
+					rocketFuel = prpl.getFuel();
+					//prpl.setFuel(rocketFuel);
+					napis=Integer.toString((int)rocketFuel);
+					text.setText(napis+"t");
+				
+				}
+				if(checkField==3)
+				{
+					rocketDistance= prpl.getDistance();
+					//prpl.setDistance(rocketDistance);
+					napis=Integer.toString((int)rocketDistance);
+					text.setText(napis+"J.A.");
+				}
+				if(checkField==4)
+				{
+					rocketMass = prpl.getMass();
+					//prpl.setMass(rocketMass);
+					napis=Integer.toString((int)rocketMass);
+					text.setText(napis+"t");
+				}
 				try {
 					sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			
 			}
 		}
 	}
