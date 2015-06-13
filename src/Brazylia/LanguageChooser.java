@@ -18,9 +18,9 @@ public class LanguageChooser extends JFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private final long serialVersionUID = 1L;
 
-	static Object selectedValue;
+	Object selectedValue;
 	
 	public LanguageChooser(){
 	setLayout(new MigLayout());
@@ -31,7 +31,7 @@ public class LanguageChooser extends JFrame {
 
 	}
 
-	static Object getLanguage(){
+	Object getLanguage(){
 		return selectedValue;
 	}
 	
@@ -41,16 +41,23 @@ public class LanguageChooser extends JFrame {
 class GettingLine{
 	InputStreamReader isr;
 	BufferedReader buf;
+	LanguageChooser lang=new LanguageChooser();
 	
+	/*public GettingLine(LanguageChooser l){
+	lang=l;
+	}
+	*/
 	{
 	String name = null;
-	if (LanguageChooser.getLanguage()=="English") name="english.txt";
+	if (lang.getLanguage()=="English") name="english.txt";
 	else {
-		if (LanguageChooser.getLanguage()=="Polski") name="polski.txt";
+		if (lang.getLanguage()=="Polski") name="polski.txt";
 		else System.exit(0);
 	}
+	
 	File file =new File(name);
 	FileInputStream fis=null;
+	
 	try {
 		fis = new FileInputStream(file);
 	} catch (FileNotFoundException e) {

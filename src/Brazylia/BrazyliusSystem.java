@@ -23,16 +23,16 @@ public class BrazyliusSystem extends JFrame  {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private final long serialVersionUID = 1L;
 	public int boxWidth=640;
 	public int boxHeight=480;
 
-	
+	//LanguageChooser lang=new LanguageChooser();
 	GettingLine gettingLine=new GettingLine();
 	
 	class MapandParameters extends JPanel {
 
-		private static final long serialVersionUID = 1L;
+		private final long serialVersionUID = 1L;
 		public MapandParameters(){
 			setBackground(Color.lightGray);
 			setLayout(new GridLayout(2,1));
@@ -46,7 +46,7 @@ public class BrazyliusSystem extends JFrame  {
 	
 	class Parameters extends JPanel{
 
-		private static final long serialVersionUID = 1L;
+		private final long serialVersionUID = 1L;
 		float rocketFuel=100;
 		//JTextField Fuel=new JTextField();
 		public Parameters(PrintingPlanets a) {
@@ -114,7 +114,7 @@ public class BrazyliusSystem extends JFrame  {
 				rocketFuel++;
 				prpl.setFuel(rocketFuel);
 				napis=Integer.toString((int)rocketFuel);
-				System.out.print(napis);
+				//System.out.print(napis);
 				
 				guzik.setText(napis);
 				//j.setText(f);
@@ -139,15 +139,15 @@ public class BrazyliusSystem extends JFrame  {
 		this.add(PlayingField,BorderLayout.CENTER);
 		this.add(map, BorderLayout.EAST);
 		Parameters Param=new Parameters(PlayingField);
-		MapLocation MapLocation=new MapLocation(gettingLine.getLine(), gettingLine.getLine(), 16);
+		MapLocation MapLocation=new MapLocation(gettingLine.getLine(), gettingLine.getLine(), 16, PlayingField);
 		map.add(Param, BorderLayout.NORTH);
 	    map.add(MapLocation,BorderLayout.SOUTH);
 	    setTitle("Brazylius");
 	}
 	
-	
+	//uwaga! languageChooser przeniesiony do getLine w LanuguageChooser- tam jest teraz tworzony!
 	public static void main(String[] args) {
-		LanguageChooser languageChooser=new LanguageChooser();
+		//LanguageChooser languageChooser=new LanguageChooser();
 		BrazyliusSystem frame = new BrazyliusSystem(); 
 		frame.setVisible(true);
 		

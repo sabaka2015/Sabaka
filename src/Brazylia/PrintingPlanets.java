@@ -27,11 +27,11 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	static int planetsLocationHelper=6;
-	public static List<Planet> planets = new ArrayList<Planet>();
-	public static Rocket rocket=new Rocket(1.2, 0);
-	static boolean ifFuelUsed=false;
+	private final long serialVersionUID = 1L;
+	int planetsLocationHelper=6;
+	public List<Planet> planets = new ArrayList<Planet>();
+	public Rocket rocket=new Rocket(1.2, 0);
+	boolean ifFuelUsed=false;
 	int direction=0;
 	BufferedImage imageL;
 	BufferedImage imageR;
@@ -101,7 +101,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 			
 			calculate.iterate(planets.get(i),0.01);
 		}
-	 	calculate.iterateRocket(rocket, 0.01, planets, this.getWidth()/2, this.getHeight()/2);
+	 	calculate.iterateRocket(rocket, 0.01, planets, this.getWidth()/2, this.getHeight()/2, this);
 	    repaint();
 	  }
 	
@@ -184,6 +184,16 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	public int getFuel()
 	{
 		return fuel;
+	}
+	
+	public void setPlanLocHelper(int f)
+	{
+		planetsLocationHelper = f;
+	}
+
+	public int getPlanLocHelper()
+	{
+		return planetsLocationHelper;
 	}
 
 

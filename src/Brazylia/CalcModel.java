@@ -15,7 +15,15 @@ public class CalcModel {
 	  
 	    }
 	//na razie obsługuje tylko siły grawitacji. Wymnożenie przez masę- proporcja w stosunku do siły grawitacji gwiazdy.
-	public void iterateRocket (Rocket rocket, double dt, List<Planet> list, int starPositionX, int starPositionY){
+	/**
+	 * @param rocket
+	 * @param dt
+	 * @param list
+	 * @param starPositionX
+	 * @param starPositionY
+	 * @param p
+	 */
+	public void iterateRocket (Rocket rocket, double dt, List<Planet> list, int starPositionX, int starPositionY, PrintingPlanets p){
 		/*double distance=Math.sqrt(Math.pow(PrintingPlanets.shiftX, 2)+Math.pow(PrintingPlanets.shiftY, 2));
 		racket.ax=(-PrintingPlanets.shiftX)/Math.pow(distance, 3);
 		racket.ay=(-PrintingPlanets.shiftY)/Math.pow(distance, 3);
@@ -31,12 +39,14 @@ public class CalcModel {
 		PrintingPlanets.shiftX+=dt*racket.vx;
 		PrintingPlanets.shiftY+=dt*racket.vy;*/
 		//sprawdzam czy klawisze- strzałki użyte:
-		if (PrintingPlanets.ifFuelUsed==false){
+		PrintingPlanets PrintPlHelp=p;
+		List <Planet> Planets=PrintPlHelp.planets;
+		if (p.ifFuelUsed==false){
 			rocket.ax=0;
 			rocket.ay=0;
 		}
 		else {
-			PrintingPlanets.ifFuelUsed=false;
+			p.ifFuelUsed=false;
 		}
 		double distance=Math.sqrt(Math.pow(rocket.x, 2)+Math.pow(rocket.y, 2));
 		rocket.ax+=(-rocket.x)/Math.pow(distance, 3);
@@ -68,11 +78,34 @@ public class CalcModel {
 		}
 		*/
 		//nowy model obliczania zderzeń- kule bilardowe, strona AGH
-		for(int i=0;i<PrintingPlanets.planets.size();i++){
-			double x=PrintingPlanets.planets.get(i).x;
-			double y=PrintingPlanets.planets.get(i).y;
-			double radius=PrintingPlanets.planets.get(i).radius;
+		for(int i=0;i<Planets.size();i++){
+			double x=Planets.get(i).x;
+			double y=Planets.get(i).y;
+			double vx=Planets.get(i).vx;
+			double vy=Planets.get(i).vy;
+			double radius=Planets.get(i).radius;
 			double deltaX=rocket.x-x;
+			double deltaY=rocket.y-y;
+			double deltaVX=rocket.vx-vx;
+			double deltaVY=rocket.vy-vy;
+			double dist=0.15; //1/(double)PrintPlHelp.getPlanLocHelper()*radius;
+			double b=2*(deltaX*deltaVX+deltaY*deltaVY);
+			double a=deltaVX*deltaVX+deltaVY*deltaVY;
+			double c=deltaX*deltaX+deltaY*deltaY-4*dist*dist;
+			double delta=Math.pow(b, 2)-4*a*c;
+			double t=rocket.dt*2;
+			if (delta>=0){
+				t=Math.min((-b-Math.sqrt(delta))/2/a,(-b+Math.sqrt(delta))/2/a) ;
+				if (t<0) t=Math.max((-b-Math.sqrt(delta))/2/a,(-b+Math.sqrt(delta))/2/a) ;
+				if (t<0) t=rocket.dt*2;
+				System.out.println(t);
+			}
+			if (t<=rocket.dt) {
+				 System.out.println("Game Over");
+				 System.out.print(t);
+				 System.exit(0);
+				}
+			
 		}
 	}
 	
