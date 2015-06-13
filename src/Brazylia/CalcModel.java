@@ -15,7 +15,7 @@ public class CalcModel {
 	  
 	    }
 	//na razie obsługuje tylko siły grawitacji. Wymnożenie przez masę- proporcja w stosunku do siły grawitacji gwiazdy.
-	public void iterateRacket (Racket racket, double dt, List<Planet> list, int starPositionX, int starPositionY){
+	public void iterateRocket (Rocket rocket, double dt, List<Planet> list, int starPositionX, int starPositionY){
 		/*double distance=Math.sqrt(Math.pow(PrintingPlanets.shiftX, 2)+Math.pow(PrintingPlanets.shiftY, 2));
 		racket.ax=(-PrintingPlanets.shiftX)/Math.pow(distance, 3);
 		racket.ay=(-PrintingPlanets.shiftY)/Math.pow(distance, 3);
@@ -32,29 +32,29 @@ public class CalcModel {
 		PrintingPlanets.shiftY+=dt*racket.vy;*/
 		//sprawdzam czy klawisze- strzałki użyte:
 		if (PrintingPlanets.ifFuelUsed==false){
-			racket.ax=0;
-			racket.ay=0;
+			rocket.ax=0;
+			rocket.ay=0;
 		}
 		else {
 			PrintingPlanets.ifFuelUsed=false;
 		}
-		double distance=Math.sqrt(Math.pow(racket.x, 2)+Math.pow(racket.y, 2));
-		racket.ax+=(-racket.x)/Math.pow(distance, 3);
-		racket.ay+=(-racket.y)/Math.pow(distance, 3);
+		double distance=Math.sqrt(Math.pow(rocket.x, 2)+Math.pow(rocket.y, 2));
+		rocket.ax+=(-rocket.x)/Math.pow(distance, 3);
+		rocket.ay+=(-rocket.y)/Math.pow(distance, 3);
 		for (int ii=0; ii<8; ii++){
-			distance=Math.sqrt(Math.pow(racket.x-list.get(ii).x, 2)+Math.pow(racket.y-list.get(ii).y, 2));
-			racket.ax+=(-racket.x+list.get(ii).x)/Math.pow(distance, 3)*list.get(ii).mass;
-			racket.ay+=(-racket.y+list.get(ii).y)/Math.pow(distance, 3)*list.get(ii).mass;
+			distance=Math.sqrt(Math.pow(rocket.x-list.get(ii).x, 2)+Math.pow(rocket.y-list.get(ii).y, 2));
+			rocket.ax+=(-rocket.x+list.get(ii).x)/Math.pow(distance, 3)*list.get(ii).mass;
+			rocket.ay+=(-rocket.y+list.get(ii).y)/Math.pow(distance, 3)*list.get(ii).mass;
 			 
 		}
-		racket.vx+=(dt)*racket.ax;
-		racket.vy+=(dt)*racket.ay;
-		racket.x+=dt*racket.vx;
-		racket.y+=dt*racket.vy;
+		rocket.vx+=(dt)*rocket.ax;
+		rocket.vy+=(dt)*rocket.ay;
+		rocket.x+=dt*rocket.vx;
+		rocket.y+=dt*rocket.vy;
 		
 
 	 
-		
+		/*
 		for(int i=0;i<PrintingPlanets.planets.size();i++){
 		//if((int)racket.x<=((int)(PrintingPlanets.planets.get(i).x)+(int)1/2*((PrintingPlanets.planets.get(i).radius)))&&(int)racket.x>=((int)(PrintingPlanets.planets.get(i).x)-(int)1/2*PrintingPlanets.planets.get(i).radius)&&(int)racket.y<=((int)(PrintingPlanets.planets.get(i).y)+(int)1/2*PrintingPlanets.planets.get(i).radius)&&(int)racket.y>=((int)(PrintingPlanets.planets.get(i).y)-1/2*(int)PrintingPlanets.planets.get(i).radius))
 		double x=PrintingPlanets.planets.get(i).x;
@@ -66,7 +66,14 @@ public class CalcModel {
 		 System.exit(0);
 		}
 		}
-		
+		*/
+		//nowy model obliczania zderzeń- kule bilardowe, strona AGH
+		for(int i=0;i<PrintingPlanets.planets.size();i++){
+			double x=PrintingPlanets.planets.get(i).x;
+			double y=PrintingPlanets.planets.get(i).y;
+			double radius=PrintingPlanets.planets.get(i).radius;
+			double deltaX=rocket.x-x;
+		}
 	}
 	
 	

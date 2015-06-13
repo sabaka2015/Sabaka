@@ -47,7 +47,7 @@ CalcModel calculate= new CalcModel();
 			
 			calculate.iterate(PrintingPlanets.planets.get(i),0.01);
 		}
-	 	calculate.iterateRacket(PrintingPlanets.racket, 0.01, PrintingPlanets.planets, this.getWidth()/2, this.getHeight()/2);
+	 	calculate.iterateRocket(PrintingPlanets.rocket, 0.01, PrintingPlanets.planets, this.getWidth()/2, this.getHeight()/2);
 	    repaint();
 	  }
 	
@@ -77,34 +77,34 @@ CalcModel calculate= new CalcModel();
 
 		}
 		g2.setColor(colors[8]);
-		printRacket(g2, PrintingPlanets.racket);
+		printRocket(g2, PrintingPlanets.rocket);
 	}
 	
 	private void printPlanet(Graphics2D g, Planet b){
 		g.fillOval((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*b.x)), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*b.y)), (int)(this.getWidth()/90*Math.sqrt(b.radius)), (int)(this.getWidth()/90*Math.sqrt(b.radius)));
 	}
 	
-	private void printRacket(Graphics2D g, Racket r){
+	private void printRocket(Graphics2D g, Rocket r){
 		//dodatkowy warunek- jeśli wyjdzie za mapkę
 		
-		if((1/(double)planetsLocationHelper2*(PrintingPlanets.racket.x)>-0.5-0.025&&(1/(double)planetsLocationHelper2*(PrintingPlanets.racket.x))<0.5-0.025&&((1/(double)planetsLocationHelper2*(PrintingPlanets.racket.y))==-0.5||(1/(double)planetsLocationHelper2*(PrintingPlanets.racket.y))==0.5)))
+		if((1/(double)planetsLocationHelper2*(PrintingPlanets.rocket.x)>-0.5-0.025&&(1/(double)planetsLocationHelper2*(PrintingPlanets.rocket.x))<0.5-0.025&&((1/(double)planetsLocationHelper2*(PrintingPlanets.rocket.y))==-0.5||(1/(double)planetsLocationHelper2*(PrintingPlanets.rocket.y))==0.5)))
 		{
 			
 		}
 		
 		int a=0;
-		if ((1/(double)planetsLocationHelper2*(PrintingPlanets.racket.x))>0.5-0.025) a+=1;
-		if ((1/(double)planetsLocationHelper2*(PrintingPlanets.racket.x))<-0.5-0.025) a+=2;
-		if ((1/(double)planetsLocationHelper2*(PrintingPlanets.racket.y))>0.5-0.025) a+=10;
-		if ((1/(double)planetsLocationHelper2*(PrintingPlanets.racket.y))<-0.5-0.025) a+=20;
+		if ((1/(double)planetsLocationHelper2*(PrintingPlanets.rocket.x))>0.5-0.025) a+=1;
+		if ((1/(double)planetsLocationHelper2*(PrintingPlanets.rocket.x))<-0.5-0.025) a+=2;
+		if ((1/(double)planetsLocationHelper2*(PrintingPlanets.rocket.y))>0.5-0.025) a+=10;
+		if ((1/(double)planetsLocationHelper2*(PrintingPlanets.rocket.y))<-0.5-0.025) a+=20;
 		switch (a){
-		case 0: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(PrintingPlanets.racket.x))), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.racket.y))), 5, 5); break;
-		case 1: g.fillRect((int)(this.getWidth())-5, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.racket.y))), 5, 5); break;
-		case 2:	g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.racket.y))), 5, 5); break;
-		case 10: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(PrintingPlanets.racket.x))), (int)(this.getHeight())-5, 5, 5); break;
-		case 20: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(PrintingPlanets.racket.x))), 0, 5, 5); break;
+		case 0: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(PrintingPlanets.rocket.x))), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.rocket.y))), 5, 5); break;
+		case 1: g.fillRect((int)(this.getWidth())-5, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.rocket.y))), 5, 5); break;
+		case 2:	g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.rocket.y))), 5, 5); break;
+		case 10: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(PrintingPlanets.rocket.x))), (int)(this.getHeight())-5, 5, 5); break;
+		case 20: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(PrintingPlanets.rocket.x))), 0, 5, 5); break;
 		case 11: g.fillRect((int)(this.getWidth())-5, (int)(this.getHeight())-5, 5, 5); break;
-		case 12: g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.racket.y))), 5, 5); break;
+		case 12: g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.rocket.y))), 5, 5); break;
 		case 21: g.fillRect((int)(this.getWidth())-5, 0, 5, 5); break;
 		case 22: g.fillRect(0, 0, 5, 5); break;
 

@@ -30,7 +30,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	private static final long serialVersionUID = 1L;
 	static int planetsLocationHelper=6;
 	public static List<Planet> planets = new ArrayList<Planet>();
-	public static Racket racket=new Racket(1.2, 0);
+	public static Rocket rocket=new Rocket(1.2, 0);
 	static boolean ifFuelUsed=false;
 	int direction=0;
 	BufferedImage imageL;
@@ -101,16 +101,16 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 			
 			calculate.iterate(planets.get(i),0.01);
 		}
-	 	calculate.iterateRacket(racket, 0.01, planets, this.getWidth()/2, this.getHeight()/2);
+	 	calculate.iterateRocket(rocket, 0.01, planets, this.getWidth()/2, this.getHeight()/2);
 	    repaint();
 	  }
 	
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT){racket.ax=3; ifFuelUsed=true; direction=0;fuel--;} 
-		if (e.getKeyCode() == KeyEvent.VK_LEFT){racket.ax=-3; ifFuelUsed=true;direction=1;fuel--;} 
-		if (e.getKeyCode() == KeyEvent.VK_UP) {racket.ay=-3; ifFuelUsed=true;direction=2;fuel--;} 
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {racket.ay=3; ifFuelUsed=true;direction=3;fuel--;} 
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT){rocket.ax=3; ifFuelUsed=true; direction=0;fuel--;} 
+		if (e.getKeyCode() == KeyEvent.VK_LEFT){rocket.ax=-3; ifFuelUsed=true;direction=1;fuel--;} 
+		if (e.getKeyCode() == KeyEvent.VK_UP) {rocket.ay=-3; ifFuelUsed=true;direction=2;fuel--;} 
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {rocket.ay=3; ifFuelUsed=true;direction=3;fuel--;} 
 		 
 		
 	}
@@ -148,22 +148,22 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		super.paint(g);
 		Graphics2D g2=(Graphics2D)g;
 		g.setColor(Color.yellow);
-		g.fillOval(this.getWidth()/2+(int)(this.getWidth()/planetsLocationHelper*(-racket.x)), this.getHeight()/2+(int)(this.getWidth()/planetsLocationHelper*(-racket.y)), this.getWidth()/5, this.getWidth()/5);
+		g.fillOval(this.getWidth()/2+(int)(this.getWidth()/planetsLocationHelper*(-rocket.x)), this.getHeight()/2+(int)(this.getWidth()/planetsLocationHelper*(-rocket.y)), this.getWidth()/5, this.getWidth()/5);
 		for (int j=0; j<planets.size(); j+=1){
 			g2.setColor(colors[j]);
 			printPlanet(g2, planets.get(j));
 
 		}
 		g2.setColor(colors[8]);
-		printRacket(g2, racket);
+		printRocket(g2, rocket);
 	}
 	
 	private void printPlanet(Graphics2D g, Planet b){
-		g.fillOval((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper*(b.x-racket.x))), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper*(b.y-racket.y))), (int)(this.getWidth()/90*Math.sqrt(b.radius)), (int)(this.getWidth()/90*Math.sqrt(b.radius)));
+		g.fillOval((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper*(b.x-rocket.x))), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper*(b.y-rocket.y))), (int)(this.getWidth()/90*Math.sqrt(b.radius)), (int)(this.getWidth()/90*Math.sqrt(b.radius)));
 		
 	}
 	
-	private void printRacket(Graphics2D g, Racket r){
+	private void printRocket(Graphics2D g, Rocket r){
 		//g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper*r.x)), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper*r.y)), 5, 5);
 		//g.fillRect((int)(this.getWidth()*(0.5+0.025)), (int)(this.getHeight()*(0.5+0.025)), 5, 5);
 		if(direction==0)

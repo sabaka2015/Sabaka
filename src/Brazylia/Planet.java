@@ -30,7 +30,7 @@ public class Planet {
 
 }
 
-class Racket  {
+class Rocket  {
 	double vx;
 	double vy;
 	double x; 
@@ -39,7 +39,7 @@ class Racket  {
 	double mass;
 	double ax, ay;
 	
-	public Racket (double x, double y){
+	public Rocket (double x, double y){
 		this.x=x;
 		this.y=y;
 		this.vx=0.0;
