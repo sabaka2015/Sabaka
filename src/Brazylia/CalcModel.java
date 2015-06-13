@@ -2,7 +2,14 @@ package Brazylia;
 
 import java.util.List;
 
-
+/**
+ * 
+ * Calculation models of planets and the rocket by Euler method
+ * Support collisions with planets and the star:
+ * algorithm is counting time to next collision for all orbs.
+ * if the time < dt, collision is detected
+ *
+ */
 public class CalcModel {
 	boolean GameOver=false;
 	double distance=0;
@@ -27,7 +34,8 @@ public class CalcModel {
 	 * @param starPositionY
 	 * @param p
 	 */
-	public void iterateRocket (Rocket rocket, double dt, List<Planet> list, int starPositionX, int starPositionY, PrintingPlanets p){
+	public void iterateRocket (Rocket rocket, double dt, List<Planet> list,
+			int starPositionX, int starPositionY, PrintingPlanets p){
 		/*double distance=Math.sqrt(Math.pow(PrintingPlanets.shiftX, 2)+Math.pow(PrintingPlanets.shiftY, 2));
 		racket.ax=(-PrintingPlanets.shiftX)/Math.pow(distance, 3);
 		racket.ay=(-PrintingPlanets.shiftY)/Math.pow(distance, 3);
@@ -57,7 +65,8 @@ public class CalcModel {
 		rocket.ax+=(-rocket.x)/Math.pow(distance, 3);
 		rocket.ay+=(-rocket.y)/Math.pow(distance, 3);
 		for (int ii=0; ii<8; ii++){
-			distance=Math.sqrt(Math.pow(rocket.x-list.get(ii).x, 2)+Math.pow(rocket.y-list.get(ii).y, 2));
+			distance=Math.sqrt(Math.pow(rocket.x-list.get(ii).x, 2)+Math.pow(+
+					rocket.y-list.get(ii).y, 2));
 			rocket.ax+=(-rocket.x+list.get(ii).x)/Math.pow(distance, 3)*list.get(ii).mass;
 			rocket.ay+=(-rocket.y+list.get(ii).y)/Math.pow(distance, 3)*list.get(ii).mass;
 			 
@@ -110,6 +119,7 @@ public class CalcModel {
 			     GameOver=true;
 				
 		}
+			if (Math.sqrt(rocket.x*rocket.x+rocket.y*rocket.y)<0.6) GameOver=true;
 }
 		
 	}

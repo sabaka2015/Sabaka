@@ -50,7 +50,9 @@ public class BrazyliusSystem extends JFrame  {
 		float rocketFuel=1000;
 		public Parameters(PrintingPlanets a) {
 			
-			setBorder(BorderFactory.createTitledBorder(null, gettingLine.getLine(), TitledBorder.LEFT, TitledBorder.TOP, new Font("times new roman",Font.PLAIN,12), Color.WHITE));
+			setBorder(BorderFactory.createTitledBorder(null, gettingLine.getLine(),+
+					TitledBorder.LEFT, TitledBorder.TOP,
+					new Font("times new roman",Font.PLAIN,12), Color.WHITE));
 			
 			JLabel speed=new JLabel(gettingLine.getLine());
 			JTextField Speed=new JTextField("15 km/s");
@@ -159,11 +161,14 @@ public class BrazyliusSystem extends JFrame  {
 		PlayingField.setFocusable(true);
 		PlayingField.setRequestFocusEnabled(true);
 		MapandParameters map=new MapandParameters();
-		PlayingField.setBorder(BorderFactory.createTitledBorder(null, gettingLine.getLine(), TitledBorder.LEFT, TitledBorder.TOP, new Font("times new roman",Font.PLAIN,12), Color.WHITE));
+		PlayingField.setBorder(BorderFactory.createTitledBorder(null, gettingLine.getLine(),+
+				TitledBorder.LEFT, TitledBorder.TOP,
+				new Font("times new roman",Font.PLAIN,12), Color.WHITE));
 		this.add(PlayingField,BorderLayout.CENTER);
 		this.add(map, BorderLayout.EAST);
 		Parameters Param=new Parameters(PlayingField);
-		MapLocation MapLocation=new MapLocation(gettingLine.getLine(), gettingLine.getLine(), 16, PlayingField);
+		MapLocation MapLocation=new MapLocation(gettingLine.getLine(),
+				gettingLine.getLine(), 16, PlayingField);
 		map.add(Param, BorderLayout.NORTH);
 	    map.add(MapLocation,BorderLayout.SOUTH);
 	    setTitle("Brazylius");
