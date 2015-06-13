@@ -4,6 +4,7 @@ import java.util.List;
 
 
 public class CalcModel {
+	boolean GameOver=false;
 	public void iterate(Planet p,double dt){
 
 	        p.ax=(-p.x)/Math.pow(p.radius, 3);
@@ -14,6 +15,7 @@ public class CalcModel {
 	        p.y+=(dt*p.vy);
 	  
 	    }
+
 	//na razie obsługuje tylko siły grawitacji. Wymnożenie przez masę- proporcja w stosunku do siły grawitacji gwiazdy.
 	/**
 	 * @param rocket
@@ -83,7 +85,7 @@ public class CalcModel {
 			double y=Planets.get(i).y;
 			double vx=Planets.get(i).vx;
 			double vy=Planets.get(i).vy;
-			double radius=Planets.get(i).radius;
+			//double radius=Planets.get(i).radius;
 			double deltaX=rocket.x-x;
 			double deltaY=rocket.y-y;
 			double deltaVX=rocket.vx-vx;
@@ -93,23 +95,25 @@ public class CalcModel {
 			double a=deltaVX*deltaVX+deltaVY*deltaVY;
 			double c=deltaX*deltaX+deltaY*deltaY-4*dist*dist;
 			double delta=Math.pow(b, 2)-4*a*c;
-			double t=rocket.dt*2;
+		    double t=rocket.dt*2;
 			if (delta>=0){
 				t=Math.min((-b-Math.sqrt(delta))/2/a,(-b+Math.sqrt(delta))/2/a) ;
 				if (t<0) t=Math.max((-b-Math.sqrt(delta))/2/a,(-b+Math.sqrt(delta))/2/a) ;
 				if (t<0) t=rocket.dt*2;
-				System.out.println(t);
 			}
+		
 			if (t<=rocket.dt) {
-				 System.out.println("Game Over");
-				 System.out.print(t);
-				 System.exit(0);
-				}
-			
+				
+			     GameOver=true;
+				
 		}
+}
+		
 	}
 	
 	
 	}
+
+		
 
 

@@ -15,11 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.border.TitledBorder;
+
 
 //Uwaga!!!!! siła silnika powinna modyfikować przyspieszenie (zasada Newtona), a nie bezpośrednio położenie- zmiana koncepcji, żeby było fizycznie!
 public class PrintingPlanets extends JPanel implements ActionListener, KeyListener {
@@ -27,7 +25,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	/**
 	 * 
 	 */
-	private final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	int planetsLocationHelper=6;
 	public List<Planet> planets = new ArrayList<Planet>();
 	public Rocket rocket=new Rocket(1.2, 0);
@@ -37,7 +35,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	BufferedImage imageR;
 	BufferedImage imageD;
 	BufferedImage imageU;
-	int fuel=100;
+	int fuel=1000;
 	
 	
 	{	
@@ -156,6 +154,18 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		}
 		g2.setColor(colors[8]);
 		printRocket(g2, rocket);
+		
+		if(calculate.GameOver==true||fuel==0)
+		{
+		
+			g2.setFont(new Font(null, Font.PLAIN, 18));
+			g2.clearRect(0, 0, this.getWidth(), this.getHeight());
+			g2.setColor(Color.red);
+			
+			g2.drawString("GAME OVER", this.getWidth()/2,  this.getHeight()/2);
+
+		
+		}
 	}
 	
 	private void printPlanet(Graphics2D g, Planet b){
@@ -163,9 +173,9 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		
 	}
 	
+
+	
 	private void printRocket(Graphics2D g, Rocket r){
-		//g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper*r.x)), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper*r.y)), 5, 5);
-		//g.fillRect((int)(this.getWidth()*(0.5+0.025)), (int)(this.getHeight()*(0.5+0.025)), 5, 5);
 		if(direction==0)
 		g.drawImage(imageL,(int)(this.getWidth()*(0.5+0.025)) , (int)(this.getHeight()*(0.5+0.025)), this);
 		if(direction==1)

@@ -18,8 +18,7 @@ public class LanguageChooser extends JFrame {
 	/**
 	 * 
 	 */
-	private final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 1L;
 	Object selectedValue;
 	
 	public LanguageChooser(){

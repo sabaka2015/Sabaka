@@ -16,10 +16,10 @@ import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
 
 public class MapLocation extends JPanel implements ActionListener {
-	private final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 
 	int planetsLocationHelper2=40;
 	Timer timer;
@@ -88,7 +88,15 @@ CalcModel calculate= new CalcModel();
 		}
 		g2.setColor(colors[8]);
 		printRocket(g2, rocket);
+		
+		if(PrintPlanetsHelp.calculate.GameOver==true||PrintPlanetsHelp.fuel==0)
+		{
+		
+			timer.stop();
+			
+		}
 	}
+	
 	
 	private void printPlanet(Graphics2D g, Planet b){
 		g.fillOval((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*b.x)), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*b.y)), (int)(this.getWidth()/90*Math.sqrt(b.radius)), (int)(this.getWidth()/90*Math.sqrt(b.radius)));

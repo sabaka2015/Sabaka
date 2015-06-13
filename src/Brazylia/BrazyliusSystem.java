@@ -5,34 +5,30 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
-//zmiana próbna
-//zmiana na stronie int.
+
+
 public class BrazyliusSystem extends JFrame  {
+
 	/**
 	 * 
 	 */
-	private final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	public int boxWidth=640;
 	public int boxHeight=480;
-
-	//LanguageChooser lang=new LanguageChooser();
 	GettingLine gettingLine=new GettingLine();
 	
 	class MapandParameters extends JPanel {
 
-		private final long serialVersionUID = 1L;
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public MapandParameters(){
 			setBackground(Color.lightGray);
 			setLayout(new GridLayout(2,1));
@@ -46,14 +42,16 @@ public class BrazyliusSystem extends JFrame  {
 	
 	class Parameters extends JPanel{
 
-		private final long serialVersionUID = 1L;
-		float rocketFuel=100;
-		//JTextField Fuel=new JTextField();
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		float rocketFuel=1000;
 		public Parameters(PrintingPlanets a) {
 			JTextField Fuel=new JTextField();
 			Guzik guzik=new Guzik(Fuel, a);
-			//add(Fuel);
-			//guzik.start();
+
 			
 			
 			setBorder(BorderFactory.createTitledBorder(null, gettingLine.getLine(), TitledBorder.LEFT, TitledBorder.TOP, new Font("times new roman",Font.PLAIN,12), Color.WHITE));
@@ -86,38 +84,27 @@ public class BrazyliusSystem extends JFrame  {
 			this.add(Mass);
 			
 			setBackground(Color.gray);
-			//rocketFuel=p.fuel;
 			guzik.start();
 		}
 
 	}
 	class Guzik extends Thread{
-		//JButton guzik;
 		JTextField guzik;
 		String napis;
 		PrintingPlanets prpl;
 		
-		int rocketFuel=100;
+		int rocketFuel=0;
 		public Guzik(JTextField g, PrintingPlanets pp){
-//		public Guzik(JTextField g){
 			guzik=g;
 			prpl = pp;
 			
 		}
 		public void run(){
-//		public void run(PrintingPlanets p){
-			while(true){
-				//guzik.doClick();
-				//rocketFuel+="1";
-				//rocketFuel=PrintingPlanets.fuel;
+			while(prpl.getFuel()!=0){
 				rocketFuel = prpl.getFuel();
-				rocketFuel++;
 				prpl.setFuel(rocketFuel);
 				napis=Integer.toString((int)rocketFuel);
-				//System.out.print(napis);
-				
 				guzik.setText(napis);
-				//j.setText(f);
 				try {
 					sleep(1000);
 				} catch (InterruptedException e) {
@@ -147,7 +134,6 @@ public class BrazyliusSystem extends JFrame  {
 	
 	//uwaga! languageChooser przeniesiony do getLine w LanuguageChooser- tam jest teraz tworzony!
 	public static void main(String[] args) {
-		//LanguageChooser languageChooser=new LanguageChooser();
 		BrazyliusSystem frame = new BrazyliusSystem(); 
 		frame.setVisible(true);
 		
