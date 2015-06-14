@@ -211,7 +211,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 
 	public int getDistance()
 	{
-		return (int)(calculate.distance);
+		return (int)(calculate.distanceToStar);
 	}
 
 
