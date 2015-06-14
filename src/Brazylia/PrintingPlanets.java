@@ -30,34 +30,39 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	 * Spaceship is in the center of JPanel.
 	 * The planets are printed in point moved by x and y position of the ship. 
 	 */
+	
+	
 	private static final long serialVersionUID = 1L;
 	int planetsLocationHelper=6;
 	public List<Planet> planets = new ArrayList<Planet>();
 	public Rocket rocket=new Rocket(1.2, 0);
 	boolean ifFuelUsed=false;
 	int direction=0;
+	/**
+	 * Four images of the rocket changing while VK keys pressed.
+	 * Author: Aleksandra
+	 */
 	BufferedImage imageL;
 	BufferedImage imageR;
 	BufferedImage imageD;
 	BufferedImage imageU;
 	int fuel=1000;
+	Timer timer;
 		
 	{	
-		for (int ii=1; ii<9; ii+=1){
+		for (int ii=1; ii<9; ii+=1) {
 			Planet p=new Planet((float)3*ii);
 			planets.add(p);
 		}
 	}
 	
-	List<Planet> getPlanets(){
+	List<Planet> getPlanets() {
 		return planets;
 	}
 	
-	Planet getPlanet(int i){
+	Planet getPlanet(int i) {
 		return planets.get(i);
 	}
-	
-	Timer timer;
 	
 	public PrintingPlanets() {
 		
@@ -67,7 +72,6 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		try {
 			imageR = ImageIO.read(new File("rakpr.png"));
 		} catch (IOException e) {
@@ -81,6 +85,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 			e.printStackTrace();
 		}	try {
 			imageD = ImageIO.read(new File("rakdl.png"));
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,7 +103,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	CalcModel calculate= new CalcModel();
 	
 	public void actionPerformed(ActionEvent e) {
-	 	for (int i=0; i<planets.size(); i++){
+	 	for (int i=0; i<planets.size(); i++) {
 			
 			calculate.iterate(planets.get(i),0.01);
 		}
@@ -112,9 +117,9 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		if (e.getKeyCode() == KeyEvent.VK_LEFT){rocket.ax=-3*(1500/(1500-rocket.mass)); ifFuelUsed=true;direction=1;} 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {rocket.ay=-3*(1500/(1500-rocket.mass)); ifFuelUsed=true;direction=2;} 
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {rocket.ay=3*(1500/(1500-rocket.mass)); ifFuelUsed=true;direction=3;}
-		if (fuel>=0)
-		{fuel--;}
-		rocket.mass--;
+		if (fuel>=0){
+			fuel--;
+			rocket.mass--;}
 		 
 	}
 
@@ -138,7 +143,11 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	colors[8]=Color.WHITE;
 	}
 	
-	public void paint(Graphics g){	
+	public void paint(Graphics g) {
+		
+		/**
+		 * Function which draws objects (planets, star and rocket)
+		 */
 		
 		super.paint(g);
 		Graphics2D g2=(Graphics2D)g;
@@ -146,7 +155,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		g.fillOval(this.getWidth()/2+(int)(this.getWidth()/planetsLocationHelper*(-rocket.x)),+
 				this.getHeight()/2+(int)(this.getWidth()/planetsLocationHelper*(-rocket.y)),+
 				this.getWidth()/5, this.getWidth()/5);
-		for (int j=0; j<planets.size(); j+=1){
+		for (int j=0; j<planets.size(); j+=1) {
 			g2.setColor(colors[j]);
 			printPlanet(g2, planets.get(j));
 
@@ -154,6 +163,10 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		
 		g2.setColor(colors[8]);
 		printRocket(g2, rocket);
+		
+		/**
+		 *  Game ends when rocket hit other objects or it is out of fuel.
+		 */
 		
 		if(calculate.GameOver==true||fuel<=0){		
 			g2.setFont(new Font(null, Font.PLAIN, 18));
@@ -188,6 +201,11 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
         		(int)(this.getHeight()*(0.5+0.025)), this);
 	}
 
+	/**
+	 * Functions used to get parameters of the rocket in JTextFields. 
+	 * (BrazyliusSystem)
+	 */
+	
 	public int getFuel()
 	{
 		return fuel;

@@ -7,7 +7,7 @@ package Brazylia;
  * mass for planets: m=(r/0,5)^3*0,0001*M
  *
  *
- */
+ */  
 public class Planet {
 	double radius;
 	double vx;
@@ -17,7 +17,7 @@ public class Planet {
 	double dt=0.01;
 	double mass;
 	double ax, ay;
-	public Planet (double radius) {
+	public Planet (double radius){
 		this.radius=radius;
 		this.vx=0.0;
 		this.vy=Math.sqrt(1/radius);
@@ -28,7 +28,7 @@ public class Planet {
 
 }
 
-class Rocket  {
+class Rocket {
 	double vx;
 	double vy;
 	double x; 

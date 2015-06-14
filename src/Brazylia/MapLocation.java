@@ -19,6 +19,7 @@ public class MapLocation extends JPanel implements ActionListener {
 	/**
 	 * Printing planets, the star and the spaceship:
 	 * The star is in the central point of the JPanel.
+	 * Map show us whole planet system and where is the rocket.
 	 */
 	private static final long serialVersionUID = 1L;
 

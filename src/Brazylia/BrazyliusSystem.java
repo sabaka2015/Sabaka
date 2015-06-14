@@ -16,8 +16,11 @@ import javax.swing.border.TitledBorder;
 public class BrazyliusSystem extends JFrame  {
 
 	/**
-	 * 
+	 *  Main frame of the program. Include panels: playing field, 
+	 *  location of rocket and rocket's parameters.
+	 *  Author: Aleksandra
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	public int boxWidth=640;
 	public int boxHeight=480;
@@ -26,7 +29,8 @@ public class BrazyliusSystem extends JFrame  {
 	class MapandParameters extends JPanel {
 
 		/**
-		 * 
+		 * Class which function is to keep panels with map
+		 * and parameters.
 		 */
 		private static final long serialVersionUID = 1L;
 		public MapandParameters(){
@@ -43,7 +47,8 @@ public class BrazyliusSystem extends JFrame  {
 	class Parameters extends JPanel{
 
 		/**
-		 * 
+		 *  Parameters of rocket in JTextFields (speed, distance to star, 
+		 *  mass, fuel).
 		 */
 		private static final long serialVersionUID = 1L;
 		float rocketFuel=1000;
@@ -95,6 +100,11 @@ public class BrazyliusSystem extends JFrame  {
 
 	}
 	class TextThread extends Thread{
+		
+		/**
+		 *  Animation of JTextFileds with rocket's parameters.
+		 *  Author: Aleksandra
+		 */
 		JTextField text;
 		String napis;
 		PrintingPlanets prpl;
