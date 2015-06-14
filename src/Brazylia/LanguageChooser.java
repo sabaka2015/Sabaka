@@ -26,7 +26,8 @@ public class LanguageChooser extends JFrame {
 	
 	Object[] values={"English", "Polski"};
 	
-	selectedValue=JOptionPane.showInputDialog(this, "Witaj w grze!", "Wybór Języka", JOptionPane.INFORMATION_MESSAGE, null, values, values[0]);
+	selectedValue=JOptionPane.showInputDialog(this, "Witaj w grze!", "Wybór Języka",+
+			JOptionPane.INFORMATION_MESSAGE, null, values, values[0]);
 
 	}
 

@@ -149,7 +149,9 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		super.paint(g);
 		Graphics2D g2=(Graphics2D)g;
 		g.setColor(Color.yellow);
-		g.fillOval(this.getWidth()/2+(int)(this.getWidth()/planetsLocationHelper*(-rocket.x)), this.getHeight()/2+(int)(this.getWidth()/planetsLocationHelper*(-rocket.y)), this.getWidth()/5, this.getWidth()/5);
+		g.fillOval(this.getWidth()/2+(int)(this.getWidth()/planetsLocationHelper*(-rocket.x)),+
+				this.getHeight()/2+(int)(this.getWidth()/planetsLocationHelper*(-rocket.y)),+
+				this.getWidth()/5, this.getWidth()/5);
 		for (int j=0; j<planets.size(); j+=1){
 			g2.setColor(colors[j]);
 			printPlanet(g2, planets.get(j));
@@ -172,7 +174,12 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	}
 	
 	private void printPlanet(Graphics2D g, Planet b){
-		g.fillOval((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper*(b.x-rocket.x))), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper*(b.y-rocket.y))), (int)(this.getWidth()/90*Math.sqrt(b.radius)), (int)(this.getWidth()/90*Math.sqrt(b.radius)));
+		g.fillOval((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/+
+				planetsLocationHelper*(b.x-rocket.x))),+
+				(int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/+
+						planetsLocationHelper*(b.y-rocket.y))),+
+				(int)(this.getWidth()/90*Math.sqrt(b.radius)),+
+				(int)(this.getWidth()/90*Math.sqrt(b.radius)));
 		
 	}
 	
@@ -180,13 +187,17 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	
 	private void printRocket(Graphics2D g, Rocket r){
 		if(direction==0)
-		g.drawImage(imageL,(int)(this.getWidth()*(0.5+0.025)) , (int)(this.getHeight()*(0.5+0.025)), this);
+		g.drawImage(imageL,(int)(this.getWidth()*(0.5+0.025)) ,+
+				(int)(this.getHeight()*(0.5+0.025)), this);
 		if(direction==1)
-		g.drawImage(imageR,(int)(this.getWidth()*(0.5+0.025)) , (int)(this.getHeight()*(0.5+0.025)), this);
+		g.drawImage(imageR,(int)(this.getWidth()*(0.5+0.025)) ,+
+				(int)(this.getHeight()*(0.5+0.025)), this);
 		if(direction==2)
-		g.drawImage(imageU,(int)(this.getWidth()*(0.5+0.025)) , (int)(this.getHeight()*(0.5+0.025)), this);
+		g.drawImage(imageU,(int)(this.getWidth()*(0.5+0.025)) ,+
+				(int)(this.getHeight()*(0.5+0.025)), this);
         if(direction==3)
-        g.drawImage(imageD,(int)(this.getWidth()*(0.5+0.025)) , (int)(this.getHeight()*(0.5+0.025)), this);
+        g.drawImage(imageD,(int)(this.getWidth()*(0.5+0.025)) ,+
+        		(int)(this.getHeight()*(0.5+0.025)), this);
 	}
 	
 

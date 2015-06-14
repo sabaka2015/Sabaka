@@ -33,7 +33,8 @@ public class MapLocation extends JPanel implements ActionListener {
 		PrintPlanetsHelp=p;
 		rocket=PrintPlanetsHelp.rocket;
 		Planets=PrintPlanetsHelp.getPlanets();
-		setBorder(BorderFactory.createTitledBorder(null, lineA, TitledBorder.LEFT, TitledBorder.TOP, new Font("times new roman",Font.PLAIN,12), Color.WHITE));
+		setBorder(BorderFactory.createTitledBorder(null, lineA, TitledBorder.LEFT,+
+				TitledBorder.TOP, new Font("times new roman",Font.PLAIN,12), Color.WHITE));
 		setBackground(Color.blue);
 		JPanel Title= new JPanel();
 		JLabel title= new JLabel(lineB);
@@ -57,7 +58,8 @@ CalcModel calculate= new CalcModel();
 			
 			calculate.iterate(Planets.get(i),0.01);
 		}
-	 	calculate.iterateRocket(rocket, 0.01, Planets, this.getWidth()/2, this.getHeight()/2, PrintPlanetsHelp);
+	 	calculate.iterateRocket(rocket, 0.01, Planets, this.getWidth()/2,+
+	 			this.getHeight()/2, PrintPlanetsHelp);
 	    repaint();
 	  }
 	
@@ -99,30 +101,52 @@ CalcModel calculate= new CalcModel();
 	
 	
 	private void printPlanet(Graphics2D g, Planet b){
-		g.fillOval((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*b.x)), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*b.y)), (int)(this.getWidth()/90*Math.sqrt(b.radius)), (int)(this.getWidth()/90*Math.sqrt(b.radius)));
+		g.fillOval((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*b.x)),+
+				(int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*b.y)),+
+				(int)(this.getWidth()/90*Math.sqrt(b.radius)),+
+				(int)(this.getWidth()/90*Math.sqrt(b.radius)));
 	}
 	
 	private void printRocket(Graphics2D g, Rocket r){
 		//dodatkowy warunek- jeśli wyjdzie za mapkę
-		
-		if((1/(double)planetsLocationHelper2*(rocket.x)>-0.5-0.025&&(1/(double)planetsLocationHelper2*(rocket.x))<0.5-0.025&&((1/(double)planetsLocationHelper2*(rocket.y))==-0.5||(1/(double)planetsLocationHelper2*(rocket.y))==0.5)))
+		/**
+		 * Printing the rocket with exception handling:
+		 * If rocket is outside the map on the right side: a+=1;
+		 * If rocket is outside the map on the left side: a+=2;
+		 * If rocket is outside the map at the top: a+=10;
+		 * If rocket is outside the map at the bottom: a+=20;
+		 */
+		/*
+		if((1/(double)planetsLocationHelper2*(rocket.x)>-0.5-0.025&&(1/(double)+
+				planetsLocationHelper2*(rocket.x))<0.5-0.025&&((1/(double)+
+						planetsLocationHelper2*(rocket.y))==-0.5||(1/(double)+
+								planetsLocationHelper2*(rocket.y))==0.5)))
 		{
 			
 		}
-		
+		*/
 		int a=0;
 		if ((1/(double)planetsLocationHelper2*(rocket.x))>0.5-0.025) a+=1;
 		if ((1/(double)planetsLocationHelper2*(rocket.x))<-0.5-0.025) a+=2;
 		if ((1/(double)planetsLocationHelper2*(rocket.y))>0.5-0.025) a+=10;
 		if ((1/(double)planetsLocationHelper2*(rocket.y))<-0.5-0.025) a+=20;
 		switch (a){
-		case 0: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(rocket.x))), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(rocket.y))), 5, 5); break;
-		case 1: g.fillRect((int)(this.getWidth())-5, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(rocket.y))), 5, 5); break;
-		case 2:	g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(rocket.y))), 5, 5); break;
-		case 10: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(rocket.x))), (int)(this.getHeight())-5, 5, 5); break;
-		case 20: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(rocket.x))), 0, 5, 5); break;
+		case 0: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/+
+				planetsLocationHelper2*(rocket.x))),+
+				(int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/+
+						planetsLocationHelper2*(rocket.y))), 5, 5); break;
+		case 1: g.fillRect((int)(this.getWidth())-5,+
+				(int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/+
+						planetsLocationHelper2*(rocket.y))), 5, 5); break;
+		case 2:	g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/+
+				planetsLocationHelper2*(rocket.y))), 5, 5); break;
+		case 10: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/+
+				planetsLocationHelper2*(rocket.x))), (int)(this.getHeight())-5, 5, 5); break;
+		case 20: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/+
+				planetsLocationHelper2*(rocket.x))), 0, 5, 5); break;
 		case 11: g.fillRect((int)(this.getWidth())-5, (int)(this.getHeight())-5, 5, 5); break;
-		case 12: g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(rocket.y))), 5, 5); break;
+		case 12: g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/+
+				planetsLocationHelper2*(rocket.y))), 5, 5); break;
 		case 21: g.fillRect((int)(this.getWidth())-5, 0, 5, 5); break;
 		case 22: g.fillRect(0, 0, 5, 5); break;
 
