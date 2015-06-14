@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-
+//nic
 public class BrazyliusSystem extends JFrame  {
 
 	/**

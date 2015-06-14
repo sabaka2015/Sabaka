@@ -110,6 +110,7 @@ CalcModel calculate= new CalcModel();
 	private void printRocket(Graphics2D g, Rocket r){
 		//dodatkowy warunek- jeśli wyjdzie za mapkę
 		/**
+		 * Author: Mateusz
 		 * Printing the rocket with exception handling:
 		 * If rocket is outside the map on the right side: a+=1;
 		 * If rocket is outside the map on the left side: a+=2;
@@ -145,8 +146,7 @@ CalcModel calculate= new CalcModel();
 		case 20: g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/+
 				planetsLocationHelper2*(rocket.x))), 0, 5, 5); break;
 		case 11: g.fillRect((int)(this.getWidth())-5, (int)(this.getHeight())-5, 5, 5); break;
-		case 12: g.fillRect(0, (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/+
-				planetsLocationHelper2*(rocket.y))), 5, 5); break;
+		case 12: g.fillRect(0, (int)(this.getHeight())-5, 5, 5); break;
 		case 21: g.fillRect((int)(this.getWidth())-5, 0, 5, 5); break;
 		case 22: g.fillRect(0, 0, 5, 5); break;
 

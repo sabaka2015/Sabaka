@@ -35,7 +35,7 @@ public class CalcModel {
 	 * @param p
 	 */
 	public void iterateRocket (Rocket rocket, double dt, List<Planet> list,
-			int starPositionX, int starPositionY, PrintingPlanets p){
+			int starPositionX, int starPositionY, PrintingPlanets p) {
 		/*double distance=Math.sqrt(Math.pow(PrintingPlanets.shiftX, 2)+Math.pow(PrintingPlanets.shiftY, 2));
 		racket.ax=(-PrintingPlanets.shiftX)/Math.pow(distance, 3);
 		racket.ay=(-PrintingPlanets.shiftY)/Math.pow(distance, 3);
@@ -118,14 +118,14 @@ public class CalcModel {
 				
 			     GameOver=true;
 				
-		}
+			}
 			if (Math.sqrt(rocket.x*rocket.x+rocket.y*rocket.y)<0.6) GameOver=true;
-}
+		}
 		
 	}
 	
 	
-	}
+}
 
 		
 
