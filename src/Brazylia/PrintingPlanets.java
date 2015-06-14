@@ -10,8 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -66,30 +66,38 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	
 	public PrintingPlanets() {
 		
-		try {
-			imageL = ImageIO.read(new File("rak.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			imageR = ImageIO.read(new File("rakpr.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			imageU = ImageIO.read(new File("rakgr.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	try {
-			imageD = ImageIO.read(new File("rakdl.png"));
-		
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			InputStream stream = getClass().getResourceAsStream("rak.png");
+			try {
+				imageL = ImageIO.read(stream);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			InputStream stream2 = getClass().getResourceAsStream("rakpr.png");
+			try {
+				imageR = ImageIO.read(stream2);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			InputStream stream3 = getClass().getResourceAsStream("rakgr.png");
+			try {
+				imageD = ImageIO.read(stream3);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			InputStream stream4 = getClass().getResourceAsStream("rakdl.png");
+			try {
+				imageU = ImageIO.read(stream4);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		setBackground(Color.BLACK);
 		setFocusable(true);
 		setRequestFocusEnabled(true);
@@ -194,10 +202,10 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		g.drawImage(imageR,(int)(this.getWidth()*(0.5+0.025)) ,+
 				(int)(this.getHeight()*(0.5+0.025)), this);
 		if(direction==2)
-		g.drawImage(imageU,(int)(this.getWidth()*(0.5+0.025)) ,+
+		g.drawImage(imageD,(int)(this.getWidth()*(0.5+0.025)) ,+
 				(int)(this.getHeight()*(0.5+0.025)), this);
         if(direction==3)
-        g.drawImage(imageD,(int)(this.getWidth()*(0.5+0.025)) ,+
+        g.drawImage(imageU,(int)(this.getWidth()*(0.5+0.025)) ,+
         		(int)(this.getHeight()*(0.5+0.025)), this);
 	}
 

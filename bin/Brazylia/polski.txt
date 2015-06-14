@@ -1,0 +1,8 @@
+Pole gry
+Parametry
+prędkość
+Paliwo
+Odległość do gwiazdy
+Masa
+Mapa
+Jesteś tutaj:
