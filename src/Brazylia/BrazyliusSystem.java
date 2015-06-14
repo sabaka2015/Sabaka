@@ -117,7 +117,7 @@ public class BrazyliusSystem extends JFrame  {
 					rocketSpeed = prpl.getSpeed();
 					//prpl.setFuel(rocketSpeed);
 					napis=Integer.toString((int)rocketSpeed);
-					text.setText(napis+"m/s");
+					text.setText(napis+"km/s");
 				}
 				if(checkField==2)
 				{

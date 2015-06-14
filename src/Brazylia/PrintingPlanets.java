@@ -189,42 +189,30 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
         g.drawImage(imageD,(int)(this.getWidth()*(0.5+0.025)) , (int)(this.getHeight()*(0.5+0.025)), this);
 	}
 	
-	public void setFuel(int f)
-	{
-		fuel = f;
-	}
+
 
 	public int getFuel()
 	{
 		return fuel;
 	}
 
-	public void setMass(int m)
-	{
-		rocket.mass = m;
-	}
+
 
 	public int getDistance()
 	{
 		return (int)(calculate.distance);
 	}
-	public void setDistance(int d)
-	{
-		calculate.distance = d;
-	}
+
 
 	public int getMass()
 	{
 		return (int)(rocket.mass);
 	}
 	
-	public void setSpeed(int s)
-	{
-		calculate.speed = s;
-	}
+
 	public int getSpeed()
 	{
-		return (int)(calculate.speed);
+		return (int)(calculate.speed*100);
 	}
 	
 	public void setPlanLocHelper(int f)
