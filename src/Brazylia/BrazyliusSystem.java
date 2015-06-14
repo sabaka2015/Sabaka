@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 
-public class BrazyliusSystem extends JFrame  {
+public class BrazyliusSystem extends JFrame {
 
 	/**
 	 *  Main frame of the program. Include panels: playing field, 
@@ -177,6 +180,51 @@ public class BrazyliusSystem extends JFrame  {
 		map.add(Param, BorderLayout.NORTH);
 	    map.add(MapLocation,BorderLayout.SOUTH);
 	    setTitle("Brazylius");
+	    this.addWindowListener(new WindowListener(){
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+				
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+	    	
+	    });
 	}
 	
 	public static void main(String[] args) {
@@ -184,5 +232,6 @@ public class BrazyliusSystem extends JFrame  {
 		frame.setVisible(true);
 		
 	}
+
 	
 }
