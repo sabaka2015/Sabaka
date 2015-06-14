@@ -112,19 +112,17 @@ public class BrazyliusSystem extends JFrame  {
 			checkField=i;
 		}
 		public void run(){
-			while(prpl.getFuel()!=0){
+			while(prpl.getFuel()>=0&&prpl.calculate.GameOver==false){
 				
 				if(checkField==1)
 				{
 					rocketSpeed = prpl.getSpeed();
-					//prpl.setFuel(rocketSpeed);
 					napis=Integer.toString((int)rocketSpeed);
 					text.setText(napis+"km/s");
 				}
 				if(checkField==2)
 				{
 					rocketFuel = prpl.getFuel();
-					//prpl.setFuel(rocketFuel);
 					napis=Integer.toString((int)rocketFuel);
 					text.setText(napis+"t");
 				
@@ -132,14 +130,12 @@ public class BrazyliusSystem extends JFrame  {
 				if(checkField==3)
 				{
 					rocketDistance= prpl.getDistance();
-					//prpl.setDistance(rocketDistance);
 					napis=Integer.toString((int)rocketDistance);
 					text.setText(napis+"J.A.");
 				}
 				if(checkField==4)
 				{
 					rocketMass = prpl.getMass();
-					//prpl.setMass(rocketMass);
 					napis=Integer.toString((int)rocketMass);
 					text.setText(napis+"t");
 				}

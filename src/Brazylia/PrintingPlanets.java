@@ -207,8 +207,6 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		return fuel;
 	}
 
-
-
 	public int getDistance()
 	{
 		return (int)(calculate.distanceToStar);
@@ -226,10 +224,6 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		return (int)(calculate.speed*100);
 	}
 	
-	public void setPlanLocHelper(int f)
-	{
-		planetsLocationHelper = f;
-	}
 
 	public int getPlanLocHelper()
 	{
