@@ -135,12 +135,12 @@ public class BrazyliusSystem extends JFrame  {
 				}
 				if(checkField==4)
 				{
-					rocketMass = prpl.getMass();
+					rocketMass = 1500+prpl.getMass();
 					napis=Integer.toString((int)rocketMass);
 					text.setText(napis+"t");
 				}
 				try {
-					sleep(1000);
+					sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

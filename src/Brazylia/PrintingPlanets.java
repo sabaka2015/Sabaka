@@ -105,15 +105,14 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT){rocket.ax=3; ifFuelUsed=true; direction=0;} 
-		if (e.getKeyCode() == KeyEvent.VK_LEFT){rocket.ax=-3; ifFuelUsed=true;direction=1;} 
-		if (e.getKeyCode() == KeyEvent.VK_UP) {rocket.ay=-3; ifFuelUsed=true;direction=2;} 
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {rocket.ay=3; ifFuelUsed=true;direction=3;}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT){rocket.ax=3*(1500/(1500-rocket.mass)); ifFuelUsed=true; direction=0;} 
+		if (e.getKeyCode() == KeyEvent.VK_LEFT){rocket.ax=-3*(1500/(1500-rocket.mass)); ifFuelUsed=true;direction=1;} 
+		if (e.getKeyCode() == KeyEvent.VK_UP) {rocket.ay=-3*(1500/(1500-rocket.mass)); ifFuelUsed=true;direction=2;} 
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {rocket.ay=3*(1500/(1500-rocket.mass)); ifFuelUsed=true;direction=3;}
 		if (fuel>=0)
 		{fuel--;}
 		rocket.mass--;
 		 
-		
 	}
 
 	public void keyReleased(KeyEvent e) {
