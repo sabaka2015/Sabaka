@@ -17,7 +17,8 @@ import javax.swing.border.TitledBorder;
 
 public class MapLocation extends JPanel implements ActionListener {
 	/**
-	 * 
+	 * Printing planets, the star and the spaceship:
+	 * The star is in the central point of the JPanel.
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -46,35 +47,32 @@ public class MapLocation extends JPanel implements ActionListener {
 		setRequestFocusEnabled(true);
 		timer = new Timer(10, this);
 	    timer.setInitialDelay(190);
-	    timer.start();
-
-		
+	    timer.start();	
 		
 	}
-CalcModel calculate= new CalcModel();
+	
+	CalcModel calculate= new CalcModel();
 	
 	public void actionPerformed(ActionEvent e) {
 	 	for (int i=0; i<Planets.size(); i++){
-			
 			calculate.iterate(Planets.get(i),0.01);
 		}
+	 	
 	 	calculate.iterateRocket(rocket, 0.01, Planets, this.getWidth()/2,+
 	 			this.getHeight()/2, PrintPlanetsHelp);
 	    repaint();
-	  }
+	}
 	
-	//Planets colors
-	Color colors[]=new Color[9];
-	{
-	colors[0]=Color.YELLOW;
-	colors[1]=Color.GREEN;
-	colors[2]=Color.PINK;
-	colors[3]=Color.magenta;
-	colors[4]=Color.RED;
-	colors[5]=Color.ORANGE;
-	colors[6]=Color.RED;
-	colors[7]=Color.GREEN;
-	colors[8]=Color.WHITE;
+	Color colors[]=new Color[9]; {
+		colors[0]=Color.YELLOW;
+		colors[1]=Color.GREEN;
+		colors[2]=Color.PINK;
+		colors[3]=Color.magenta;
+		colors[4]=Color.RED;
+		colors[5]=Color.ORANGE;
+		colors[6]=Color.RED;
+		colors[7]=Color.GREEN;
+		colors[8]=Color.WHITE;
 	}
 	
 	public void paint(Graphics g){	
@@ -86,16 +84,12 @@ CalcModel calculate= new CalcModel();
 		for (int j=0; j<Planets.size(); j+=1){
 			g2.setColor(colors[j]);
 			printPlanet(g2, Planets.get(j));
-
 		}
 		g2.setColor(colors[8]);
 		printRocket(g2, rocket);
 		
-		if(PrintPlanetsHelp.calculate.GameOver==true||PrintPlanetsHelp.fuel==0)
-		{
-		
+		if(PrintPlanetsHelp.calculate.GameOver==true||PrintPlanetsHelp.fuel==0) {
 			timer.stop();
-			
 		}
 	}
 	
@@ -108,7 +102,7 @@ CalcModel calculate= new CalcModel();
 	}
 	
 	private void printRocket(Graphics2D g, Rocket r){
-		//dodatkowy warunek- jeśli wyjdzie za mapkę
+
 		/**
 		 * Author: Mateusz
 		 * Printing the rocket with exception handling:
@@ -117,15 +111,7 @@ CalcModel calculate= new CalcModel();
 		 * If rocket is outside the map at the top: a+=10;
 		 * If rocket is outside the map at the bottom: a+=20;
 		 */
-		/*
-		if((1/(double)planetsLocationHelper2*(rocket.x)>-0.5-0.025&&(1/(double)+
-				planetsLocationHelper2*(rocket.x))<0.5-0.025&&((1/(double)+
-						planetsLocationHelper2*(rocket.y))==-0.5||(1/(double)+
-								planetsLocationHelper2*(rocket.y))==0.5)))
-		{
-			
-		}
-		*/
+		
 		int a=0;
 		if ((1/(double)planetsLocationHelper2*(rocket.x))>0.5-0.025) a+=1;
 		if ((1/(double)planetsLocationHelper2*(rocket.x))<-0.5-0.025) a+=2;
@@ -151,7 +137,6 @@ CalcModel calculate= new CalcModel();
 		case 22: g.fillRect(0, 0, 5, 5); break;
 
 		}
-		//g.fillRect((int)(this.getWidth()*(0.5+0.025)+(this.getWidth()/planetsLocationHelper2*(PrintingPlanets.racket.x))), (int)(this.getHeight()*(0.5+0.025)+(this.getHeight()/planetsLocationHelper2*(PrintingPlanets.racket.y))), 5, 5);
 	}
 
 

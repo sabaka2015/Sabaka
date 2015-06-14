@@ -5,9 +5,12 @@ import java.util.List;
 /**
  * 
  * Calculation models of planets and the rocket by Euler method
- * Support collisions with planets and the star:
- * algorithm is counting time to next collision for all orbs.
- * if the time < dt, collision is detected
+ * Gravity forces between: the star and the planets, the star and the rocket
+ * and the planets and the rocket.
+ * Forces between planets are omitted.
+ * 
+ * Game over after collision with a planet or the star. 
+ * Game over when the fuel is gone.
  *
  */
 public class CalcModel {
@@ -25,32 +28,10 @@ public class CalcModel {
 	  
 	    }
 
-	//na razie obsługuje tylko siły grawitacji. Wymnożenie przez masę- proporcja w stosunku do siły grawitacji gwiazdy.
-	/**
-	 * @param rocket
-	 * @param dt
-	 * @param list
-	 * @param starPositionX
-	 * @param starPositionY
-	 * @param p
-	 */
+
 	public void iterateRocket (Rocket rocket, double dt, List<Planet> list,
 			int starPositionX, int starPositionY, PrintingPlanets p) {
-		/*double distance=Math.sqrt(Math.pow(PrintingPlanets.shiftX, 2)+Math.pow(PrintingPlanets.shiftY, 2));
-		racket.ax=(-PrintingPlanets.shiftX)/Math.pow(distance, 3);
-		racket.ay=(-PrintingPlanets.shiftY)/Math.pow(distance, 3);
-		for (int ii=0; ii<8; ii++){
-			distance=Math.sqrt(Math.pow(PrintingPlanets.shiftX-list.get(ii).x, 2)+Math.pow(PrintingPlanets.shiftY-list.get(ii).y, 2));
-			racket.ax+=(-PrintingPlanets.shiftX+list.get(ii).x)/Math.pow(distance, 3)*list.get(ii).mass;
-			racket.ay+=(-PrintingPlanets.shiftY+list.get(ii).y)/Math.pow(distance, 3)*list.get(ii).mass;
-		}
-		racket.vx+=(dt)*racket.ax;
-		racket.vy+=(dt)*racket.ay;
-		racket.x+=dt*racket.vx;
-		racket.y+=dt*racket.vy;
-		PrintingPlanets.shiftX+=dt*racket.vx;
-		PrintingPlanets.shiftY+=dt*racket.vy;*/
-		//sprawdzam czy klawisze- strzałki użyte:
+		
 		PrintingPlanets PrintPlHelp=p;
 		List <Planet> Planets=PrintPlHelp.planets;
 		if (p.ifFuelUsed==false){
@@ -77,33 +58,23 @@ public class CalcModel {
 		rocket.x+=dt*rocket.vx;
 		rocket.y+=dt*rocket.vy;
 		
-
-	 
-		/*
-		for(int i=0;i<PrintingPlanets.planets.size();i++){
-		//if((int)racket.x<=((int)(PrintingPlanets.planets.get(i).x)+(int)1/2*((PrintingPlanets.planets.get(i).radius)))&&(int)racket.x>=((int)(PrintingPlanets.planets.get(i).x)-(int)1/2*PrintingPlanets.planets.get(i).radius)&&(int)racket.y<=((int)(PrintingPlanets.planets.get(i).y)+(int)1/2*PrintingPlanets.planets.get(i).radius)&&(int)racket.y>=((int)(PrintingPlanets.planets.get(i).y)-1/2*(int)PrintingPlanets.planets.get(i).radius))
-		double x=PrintingPlanets.planets.get(i).x;
-		double y=PrintingPlanets.planets.get(i).y;
-		double radius=PrintingPlanets.planets.get(i).radius;
-		if (((float)racket.x<=(float)(x+0.3)&&(float)racket.x>=(float)(x-0.3))&&((float)racket.y<=(int)(y+0.3)&&(float)racket.y>=(float)(y-0.3)))
-		{
-		 System.out.print("Game Over");
-		 System.exit(0);
-		}
-		}
-		*/
-		//nowy model obliczania zderzeń- kule bilardowe, strona AGH
+		/**
+		 * Author: Mateusz
+		 * Support collisions with planets and the star:
+		 * algorithm is counting time to next collision for all orbs.
+		 * if the time < dt, collision is detected, game is over.
+		 */
+		
 		for(int i=0;i<Planets.size();i++){
 			double x=Planets.get(i).x;
 			double y=Planets.get(i).y;
 			double vx=Planets.get(i).vx;
 			double vy=Planets.get(i).vy;
-			//double radius=Planets.get(i).radius;
 			double deltaX=rocket.x-x;
 			double deltaY=rocket.y-y;
 			double deltaVX=rocket.vx-vx;
 			double deltaVY=rocket.vy-vy;
-			double dist=0.15; //1/(double)PrintPlHelp.getPlanLocHelper()*radius;
+			double dist=0.15; 
 			double b=2*(deltaX*deltaVX+deltaY*deltaVY);
 			double a=deltaVX*deltaVX+deltaVY*deltaVY;
 			double c=deltaX*deltaX+deltaY*deltaY-4*dist*dist;

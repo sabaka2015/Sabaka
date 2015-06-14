@@ -12,12 +12,14 @@ import javax.swing.JOptionPane;
 
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * Author: Mateusz
+ * Texts from txt files. 
+ * Subtitles are downloaded by getLine function.
+ */
 
 public class LanguageChooser extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	Object selectedValue;
 	
@@ -34,8 +36,6 @@ public class LanguageChooser extends JFrame {
 	Object getLanguage(){
 		return selectedValue;
 	}
-	
-	
 }
 
 class GettingLine{
@@ -43,10 +43,6 @@ class GettingLine{
 	BufferedReader buf;
 	LanguageChooser lang=new LanguageChooser();
 	
-	/*public GettingLine(LanguageChooser l){
-	lang=l;
-	}
-	*/
 	{
 	String name = null;
 	if (lang.getLanguage()=="English") name="english.txt";
@@ -80,4 +76,4 @@ class GettingLine{
 		return linia;
 		
 	}
-	}
+}

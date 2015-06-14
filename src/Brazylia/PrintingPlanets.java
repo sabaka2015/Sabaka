@@ -19,11 +19,16 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
-//Uwaga!!!!! siła silnika powinna modyfikować przyspieszenie (zasada Newtona), a nie bezpośrednio położenie- zmiana koncepcji, żeby było fizycznie!
 public class PrintingPlanets extends JPanel implements ActionListener, KeyListener {
 	
 	/**
+	 * Control a spaceship by using keys
+	 * After pressing the acceleration of the ship is incremented
+	 * in inversely proportion to the weight of spaceship.
 	 * 
+	 * Printing planets:
+	 * Spaceship is in the center of JPanel.
+	 * The planets are printed in point moved by x and y position of the ship. 
 	 */
 	private static final long serialVersionUID = 1L;
 	int planetsLocationHelper=6;
@@ -36,8 +41,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	BufferedImage imageD;
 	BufferedImage imageU;
 	int fuel=1000;
-	
-	
+		
 	{	
 		for (int ii=1; ii<9; ii+=1){
 			Planet p=new Planet((float)3*ii);
@@ -91,7 +95,6 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 
 	}
 	
-
 	CalcModel calculate= new CalcModel();
 	
 	public void actionPerformed(ActionEvent e) {
@@ -116,21 +119,14 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	}
 
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	
+		// TODO Auto-generated method stub	
 	}
-	
-	
-	
-	//Planets colors
-	Color colors[]=new Color[9];
-	{
+		
+	Color colors[]=new Color[9];{
 	colors[0]=Color.YELLOW;
 	colors[1]=Color.GREEN;
 	colors[2]=Color.PINK;
@@ -144,7 +140,6 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 	
 	public void paint(Graphics g){	
 		
-		
 		super.paint(g);
 		Graphics2D g2=(Graphics2D)g;
 		g.setColor(Color.yellow);
@@ -156,19 +151,15 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 			printPlanet(g2, planets.get(j));
 
 		}
+		
 		g2.setColor(colors[8]);
 		printRocket(g2, rocket);
 		
-		if(calculate.GameOver==true||fuel<=0)
-		{
-		
+		if(calculate.GameOver==true||fuel<=0){		
 			g2.setFont(new Font(null, Font.PLAIN, 18));
 			g2.clearRect(0, 0, this.getWidth(), this.getHeight());
-			g2.setColor(Color.red);
-			
-			g2.drawString("GAME OVER", this.getWidth()/2,  this.getHeight()/2);
-
-		
+			g2.setColor(Color.red);			
+			g2.drawString("GAME OVER", this.getWidth()/2,  this.getHeight()/2);		
 		}
 	}
 	
@@ -181,9 +172,7 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 				(int)(this.getWidth()/90*Math.sqrt(b.radius)));
 		
 	}
-	
-
-	
+		
 	private void printRocket(Graphics2D g, Rocket r){
 		if(direction==0)
 		g.drawImage(imageL,(int)(this.getWidth()*(0.5+0.025)) ,+
@@ -198,8 +187,6 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
         g.drawImage(imageD,(int)(this.getWidth()*(0.5+0.025)) ,+
         		(int)(this.getHeight()*(0.5+0.025)), this);
 	}
-	
-
 
 	public int getFuel()
 	{
@@ -211,24 +198,18 @@ public class PrintingPlanets extends JPanel implements ActionListener, KeyListen
 		return (int)(calculate.distanceToStar);
 	}
 
-
 	public int getMass()
 	{
 		return (int)(rocket.mass);
 	}
 	
-
 	public int getSpeed()
 	{
 		return (int)(calculate.speed*100);
 	}
 	
-
 	public int getPlanLocHelper()
 	{
 		return planetsLocationHelper;
 	}
-
-
-
 }

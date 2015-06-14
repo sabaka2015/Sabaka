@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-//nic
+
 public class BrazyliusSystem extends JFrame  {
 
 	/**
@@ -41,7 +41,6 @@ public class BrazyliusSystem extends JFrame  {
 	}
 	
 	class Parameters extends JPanel{
-
 
 		/**
 		 * 
@@ -170,7 +169,6 @@ public class BrazyliusSystem extends JFrame  {
 	    setTitle("Brazylius");
 	}
 	
-	//uwaga! languageChooser przeniesiony do getLine w LanuguageChooser- tam jest teraz tworzony!
 	public static void main(String[] args) {
 		BrazyliusSystem frame = new BrazyliusSystem(); 
 		frame.setVisible(true);

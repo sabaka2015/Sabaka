@@ -7,8 +7,6 @@ package Brazylia;
  * mass for planets: m=(r/0,5)^3*0,0001*M
  *
  *
- *
- *	double r=0.5;
  */
 public class Planet {
 	double radius;
